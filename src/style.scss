@@ -1,0 +1,7 @@
+$bg : darkgray;
+$primary: darkblue;
+$dager: orangered;
+@import 'bootstrap/scss/bootstrap';
+body {
+  background: $bg;
+}
