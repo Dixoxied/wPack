@@ -10777,3 +10777,9 @@ textarea.form-control-lg {
 body {
   background: darkgray;
 }
+
+.logo {
+  width: 150px;
+  display: block;
+  margin: 1rem auto;
+}
