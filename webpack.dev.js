@@ -11,12 +11,14 @@ module.exports = merge(config, {
     },
     compress: true,
     port: 9000,
-    liveReload: true,
+    // liveReload: true,
   },
   output : {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
+    assetModuleFilename: 'img/[name][ext]',
     clean: true,
   },
   plugins: [new MiniCssExtractPlugin()],
+  watch: true,
 });
