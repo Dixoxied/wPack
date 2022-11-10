@@ -3190,214 +3190,6 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
-/***/ "./src/app/alert.service.js":
-/*!**********************************!*\
-  !*** ./src/app/alert.service.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AlertService": () => (/* binding */ AlertService)
-/* harmony export */ });
-/* harmony import */ var _utils_cekInputValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/cekInputValid.js */ "./src/app/utils/cekInputValid.js");
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var AlertService = /*#__PURE__*/_createClass(function AlertService() {
-  var _this = this;
-  _classCallCheck(this, AlertService);
-  _defineProperty(this, "tampilkanErrorPenjumlahan", function (input, angka) {
-    var hasil = input.reduce(function (pesan, nilai, index) {
-      if ((0,_utils_cekInputValid_js__WEBPACK_IMPORTED_MODULE_0__.cekInputValid)(angka[index])) {
-        return pesan + '';
-      } else {
-        return pesan + "".concat(nilai, " itu bukan angka! ");
-      }
-    }, 'Silahkan masukkan angka yang benar: ');
-    _this.error.classList.remove('d-none');
-    _this.error.innerText = hasil;
-  });
-  _defineProperty(this, "sembunyikanError", function () {
-    return _this.error.classList.add('d-none');
-  });
-  this.error = document.querySelector('#error');
-});
-
-/***/ }),
-
-/***/ "./src/app/app.js":
-/*!************************!*\
-  !*** ./src/app/app.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "run": () => (/* binding */ run)
-/* harmony export */ });
-/* harmony import */ var _utils_cekInputValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/cekInputValid.js */ "./src/app/utils/cekInputValid.js");
-/* harmony import */ var _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/parseInput.js */ "./src/app/utils/parseInput.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-var run = function run(alertService, calculatorService, jokesService) {
-  alertService.sembunyikanError();
-  calculatorService.onClick(function () {
-    alertService.sembunyikanError();
-    var input = calculatorService.getInput();
-    var angka = _utils_parseInput_js__WEBPACK_IMPORTED_MODULE_1__.parseInput.apply(void 0, _toConsumableArray(input));
-    if (_utils_cekInputValid_js__WEBPACK_IMPORTED_MODULE_0__.cekInputValid.apply(void 0, _toConsumableArray(angka))) {
-      var _angka = _slicedToArray(angka, 2),
-        angka1 = _angka[0],
-        angka2 = _angka[1];
-      calculatorService.setResult(angka1, angka2);
-    } else {
-      calculatorService.setResult('');
-      alertService.tampilkanErrorPenjumlahan(input, angka);
-    }
-  });
-  jokesService.onClick(function () {
-    fetch('https://candaan-api.vercel.app/api/text/random').then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      jokesService.setModal(data.data);
-    });
-  });
-};
-
-/***/ }),
-
-/***/ "./src/app/calculator.service.js":
-/*!***************************************!*\
-  !*** ./src/app/calculator.service.js ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CalculatorService": () => (/* binding */ CalculatorService)
-/* harmony export */ });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-var CalculatorService = /*#__PURE__*/function () {
-  function CalculatorService() {
-    _classCallCheck(this, CalculatorService);
-    this.operand1 = document.querySelector('#operand1');
-    this.operand2 = document.querySelector('#operand2');
-    this.tombolTambah = document.querySelector('#tombol-tambah');
-    this.hasil = document.querySelector('#hasil');
-  }
-  _createClass(CalculatorService, [{
-    key: "getInput",
-    value: function getInput() {
-      return [this.operand1.value, this.operand2.value];
-    }
-  }, {
-    key: "setResult",
-    value: function setResult(angka1, angka2) {
-      this.hasil.innerText = angka1 + angka2;
-    }
-  }, {
-    key: "onClick",
-    value: function onClick(cb) {
-      this.tombolTambah.addEventListener('click', cb);
-    }
-  }]);
-  return CalculatorService;
-}();
-
-/***/ }),
-
-/***/ "./src/app/jokes.service.js":
-/*!**********************************!*\
-  !*** ./src/app/jokes.service.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JokesService": () => (/* binding */ JokesService)
-/* harmony export */ });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-var JokesService = /*#__PURE__*/function () {
-  function JokesService() {
-    _classCallCheck(this, JokesService);
-    this.tombolJokes = document.querySelector('#jokes-receh');
-    this.modalBody = document.querySelector('.modal-body');
-  }
-  _createClass(JokesService, [{
-    key: "setModal",
-    value: function setModal(str) {
-      this.modalBody.innerHTML = str;
-    }
-  }, {
-    key: "onClick",
-    value: function onClick(cb) {
-      this.tombolJokes.addEventListener('click', cb);
-    }
-  }]);
-  return JokesService;
-}();
-
-/***/ }),
-
-/***/ "./src/app/utils/cekInputValid.js":
-/*!****************************************!*\
-  !*** ./src/app/utils/cekInputValid.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cekInputValid": () => (/* binding */ cekInputValid)
-/* harmony export */ });
-var cekInputValid = function cekInputValid() {
-  for (var _len = arguments.length, angka = new Array(_len), _key = 0; _key < _len; _key++) {
-    angka[_key] = arguments[_key];
-  }
-  return angka.every(function (num) {
-    return typeof num === 'number' && !isNaN(num);
-  });
-};
-
-/***/ }),
-
-/***/ "./src/app/utils/parseInput.js":
-/*!*************************************!*\
-  !*** ./src/app/utils/parseInput.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parseInput": () => (/* binding */ parseInput)
-/* harmony export */ });
-var parseInput = function parseInput() {
-  for (var _len = arguments.length, input = new Array(_len), _key = 0; _key < _len; _key++) {
-    input[_key] = arguments[_key];
-  }
-  return input.map(function (str) {
-    return parseInt(str);
-  });
-};
-
-/***/ }),
-
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.esm.js":
 /*!*********************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.esm.js ***!
@@ -8636,14 +8428,532 @@ defineJQueryPlugin(Toast);
 
 /***/ }),
 
-/***/ "./src/style.scss":
-/*!************************!*\
-  !*** ./src/style.scss ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/vanilla-tilt/lib/vanilla-tilt.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/vanilla-tilt/lib/vanilla-tilt.js ***!
+  \*******************************************************/
+/***/ ((module) => {
 
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+/**
+ * Created by Sergiu Șandor (micku7zu) on 1/27/2017.
+ * Original idea: https://github.com/gijsroge/tilt.js
+ * MIT License.
+ * Version 1.7.3
+ */
+
+var VanillaTilt = function () {
+  function VanillaTilt(element) {
+    var settings = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    classCallCheck(this, VanillaTilt);
+
+    if (!(element instanceof Node)) {
+      throw "Can't initialize VanillaTilt because " + element + " is not a Node.";
+    }
+
+    this.width = null;
+    this.height = null;
+    this.clientWidth = null;
+    this.clientHeight = null;
+    this.left = null;
+    this.top = null;
+
+    // for Gyroscope sampling
+    this.gammazero = null;
+    this.betazero = null;
+    this.lastgammazero = null;
+    this.lastbetazero = null;
+
+    this.transitionTimeout = null;
+    this.updateCall = null;
+    this.event = null;
+
+    this.updateBind = this.update.bind(this);
+    this.resetBind = this.reset.bind(this);
+
+    this.element = element;
+    this.settings = this.extendSettings(settings);
+
+    this.reverse = this.settings.reverse ? -1 : 1;
+    this.glare = VanillaTilt.isSettingTrue(this.settings.glare);
+    this.glarePrerender = VanillaTilt.isSettingTrue(this.settings["glare-prerender"]);
+    this.fullPageListening = VanillaTilt.isSettingTrue(this.settings["full-page-listening"]);
+    this.gyroscope = VanillaTilt.isSettingTrue(this.settings.gyroscope);
+    this.gyroscopeSamples = this.settings.gyroscopeSamples;
+
+    this.elementListener = this.getElementListener();
+
+    if (this.glare) {
+      this.prepareGlare();
+    }
+
+    if (this.fullPageListening) {
+      this.updateClientSize();
+    }
+
+    this.addEventListeners();
+    this.reset();
+    this.updateInitialPosition();
+  }
+
+  VanillaTilt.isSettingTrue = function isSettingTrue(setting) {
+    return setting === "" || setting === true || setting === 1;
+  };
+
+  /**
+   * Method returns element what will be listen mouse events
+   * @return {Node}
+   */
+
+
+  VanillaTilt.prototype.getElementListener = function getElementListener() {
+    if (this.fullPageListening) {
+      return window.document;
+    }
+
+    if (typeof this.settings["mouse-event-element"] === "string") {
+      var mouseEventElement = document.querySelector(this.settings["mouse-event-element"]);
+
+      if (mouseEventElement) {
+        return mouseEventElement;
+      }
+    }
+
+    if (this.settings["mouse-event-element"] instanceof Node) {
+      return this.settings["mouse-event-element"];
+    }
+
+    return this.element;
+  };
+
+  /**
+   * Method set listen methods for this.elementListener
+   * @return {Node}
+   */
+
+
+  VanillaTilt.prototype.addEventListeners = function addEventListeners() {
+    this.onMouseEnterBind = this.onMouseEnter.bind(this);
+    this.onMouseMoveBind = this.onMouseMove.bind(this);
+    this.onMouseLeaveBind = this.onMouseLeave.bind(this);
+    this.onWindowResizeBind = this.onWindowResize.bind(this);
+    this.onDeviceOrientationBind = this.onDeviceOrientation.bind(this);
+
+    this.elementListener.addEventListener("mouseenter", this.onMouseEnterBind);
+    this.elementListener.addEventListener("mouseleave", this.onMouseLeaveBind);
+    this.elementListener.addEventListener("mousemove", this.onMouseMoveBind);
+
+    if (this.glare || this.fullPageListening) {
+      window.addEventListener("resize", this.onWindowResizeBind);
+    }
+
+    if (this.gyroscope) {
+      window.addEventListener("deviceorientation", this.onDeviceOrientationBind);
+    }
+  };
+
+  /**
+   * Method remove event listeners from current this.elementListener
+   */
+
+
+  VanillaTilt.prototype.removeEventListeners = function removeEventListeners() {
+    this.elementListener.removeEventListener("mouseenter", this.onMouseEnterBind);
+    this.elementListener.removeEventListener("mouseleave", this.onMouseLeaveBind);
+    this.elementListener.removeEventListener("mousemove", this.onMouseMoveBind);
+
+    if (this.gyroscope) {
+      window.removeEventListener("deviceorientation", this.onDeviceOrientationBind);
+    }
+
+    if (this.glare || this.fullPageListening) {
+      window.removeEventListener("resize", this.onWindowResizeBind);
+    }
+  };
+
+  VanillaTilt.prototype.destroy = function destroy() {
+    clearTimeout(this.transitionTimeout);
+    if (this.updateCall !== null) {
+      cancelAnimationFrame(this.updateCall);
+    }
+
+    this.reset();
+
+    this.removeEventListeners();
+    this.element.vanillaTilt = null;
+    delete this.element.vanillaTilt;
+
+    this.element = null;
+  };
+
+  VanillaTilt.prototype.onDeviceOrientation = function onDeviceOrientation(event) {
+    if (event.gamma === null || event.beta === null) {
+      return;
+    }
+
+    this.updateElementPosition();
+
+    if (this.gyroscopeSamples > 0) {
+      this.lastgammazero = this.gammazero;
+      this.lastbetazero = this.betazero;
+
+      if (this.gammazero === null) {
+        this.gammazero = event.gamma;
+        this.betazero = event.beta;
+      } else {
+        this.gammazero = (event.gamma + this.lastgammazero) / 2;
+        this.betazero = (event.beta + this.lastbetazero) / 2;
+      }
+
+      this.gyroscopeSamples -= 1;
+    }
+
+    var totalAngleX = this.settings.gyroscopeMaxAngleX - this.settings.gyroscopeMinAngleX;
+    var totalAngleY = this.settings.gyroscopeMaxAngleY - this.settings.gyroscopeMinAngleY;
+
+    var degreesPerPixelX = totalAngleX / this.width;
+    var degreesPerPixelY = totalAngleY / this.height;
+
+    var angleX = event.gamma - (this.settings.gyroscopeMinAngleX + this.gammazero);
+    var angleY = event.beta - (this.settings.gyroscopeMinAngleY + this.betazero);
+
+    var posX = angleX / degreesPerPixelX;
+    var posY = angleY / degreesPerPixelY;
+
+    if (this.updateCall !== null) {
+      cancelAnimationFrame(this.updateCall);
+    }
+
+    this.event = {
+      clientX: posX + this.left,
+      clientY: posY + this.top
+    };
+
+    this.updateCall = requestAnimationFrame(this.updateBind);
+  };
+
+  VanillaTilt.prototype.onMouseEnter = function onMouseEnter() {
+    this.updateElementPosition();
+    this.element.style.willChange = "transform";
+    this.setTransition();
+  };
+
+  VanillaTilt.prototype.onMouseMove = function onMouseMove(event) {
+    if (this.updateCall !== null) {
+      cancelAnimationFrame(this.updateCall);
+    }
+
+    this.event = event;
+    this.updateCall = requestAnimationFrame(this.updateBind);
+  };
+
+  VanillaTilt.prototype.onMouseLeave = function onMouseLeave() {
+    this.setTransition();
+
+    if (this.settings.reset) {
+      requestAnimationFrame(this.resetBind);
+    }
+  };
+
+  VanillaTilt.prototype.reset = function reset() {
+    this.event = {
+      clientX: this.left + this.width / 2,
+      clientY: this.top + this.height / 2
+    };
+
+    if (this.element && this.element.style) {
+      this.element.style.transform = "perspective(" + this.settings.perspective + "px) " + "rotateX(0deg) " + "rotateY(0deg) " + "scale3d(1, 1, 1)";
+    }
+
+    this.resetGlare();
+  };
+
+  VanillaTilt.prototype.resetGlare = function resetGlare() {
+    if (this.glare) {
+      this.glareElement.style.transform = "rotate(180deg) translate(-50%, -50%)";
+      this.glareElement.style.opacity = "0";
+    }
+  };
+
+  VanillaTilt.prototype.updateInitialPosition = function updateInitialPosition() {
+    if (this.settings.startX === 0 && this.settings.startY === 0) {
+      return;
+    }
+
+    this.onMouseEnter();
+
+    if (this.fullPageListening) {
+      this.event = {
+        clientX: (this.settings.startX + this.settings.max) / (2 * this.settings.max) * this.clientWidth,
+        clientY: (this.settings.startY + this.settings.max) / (2 * this.settings.max) * this.clientHeight
+      };
+    } else {
+      this.event = {
+        clientX: this.left + (this.settings.startX + this.settings.max) / (2 * this.settings.max) * this.width,
+        clientY: this.top + (this.settings.startY + this.settings.max) / (2 * this.settings.max) * this.height
+      };
+    }
+
+    var backupScale = this.settings.scale;
+    this.settings.scale = 1;
+    this.update();
+    this.settings.scale = backupScale;
+    this.resetGlare();
+  };
+
+  VanillaTilt.prototype.getValues = function getValues() {
+    var x = void 0,
+        y = void 0;
+
+    if (this.fullPageListening) {
+      x = this.event.clientX / this.clientWidth;
+      y = this.event.clientY / this.clientHeight;
+    } else {
+      x = (this.event.clientX - this.left) / this.width;
+      y = (this.event.clientY - this.top) / this.height;
+    }
+
+    x = Math.min(Math.max(x, 0), 1);
+    y = Math.min(Math.max(y, 0), 1);
+
+    var tiltX = (this.reverse * (this.settings.max - x * this.settings.max * 2)).toFixed(2);
+    var tiltY = (this.reverse * (y * this.settings.max * 2 - this.settings.max)).toFixed(2);
+    var angle = Math.atan2(this.event.clientX - (this.left + this.width / 2), -(this.event.clientY - (this.top + this.height / 2))) * (180 / Math.PI);
+
+    return {
+      tiltX: tiltX,
+      tiltY: tiltY,
+      percentageX: x * 100,
+      percentageY: y * 100,
+      angle: angle
+    };
+  };
+
+  VanillaTilt.prototype.updateElementPosition = function updateElementPosition() {
+    var rect = this.element.getBoundingClientRect();
+
+    this.width = this.element.offsetWidth;
+    this.height = this.element.offsetHeight;
+    this.left = rect.left;
+    this.top = rect.top;
+  };
+
+  VanillaTilt.prototype.update = function update() {
+    var values = this.getValues();
+
+    this.element.style.transform = "perspective(" + this.settings.perspective + "px) " + "rotateX(" + (this.settings.axis === "x" ? 0 : values.tiltY) + "deg) " + "rotateY(" + (this.settings.axis === "y" ? 0 : values.tiltX) + "deg) " + "scale3d(" + this.settings.scale + ", " + this.settings.scale + ", " + this.settings.scale + ")";
+
+    if (this.glare) {
+      this.glareElement.style.transform = "rotate(" + values.angle + "deg) translate(-50%, -50%)";
+      this.glareElement.style.opacity = "" + values.percentageY * this.settings["max-glare"] / 100;
+    }
+
+    this.element.dispatchEvent(new CustomEvent("tiltChange", {
+      "detail": values
+    }));
+
+    this.updateCall = null;
+  };
+
+  /**
+   * Appends the glare element (if glarePrerender equals false)
+   * and sets the default style
+   */
+
+
+  VanillaTilt.prototype.prepareGlare = function prepareGlare() {
+    // If option pre-render is enabled we assume all html/css is present for an optimal glare effect.
+    if (!this.glarePrerender) {
+      // Create glare element
+      var jsTiltGlare = document.createElement("div");
+      jsTiltGlare.classList.add("js-tilt-glare");
+
+      var jsTiltGlareInner = document.createElement("div");
+      jsTiltGlareInner.classList.add("js-tilt-glare-inner");
+
+      jsTiltGlare.appendChild(jsTiltGlareInner);
+      this.element.appendChild(jsTiltGlare);
+    }
+
+    this.glareElementWrapper = this.element.querySelector(".js-tilt-glare");
+    this.glareElement = this.element.querySelector(".js-tilt-glare-inner");
+
+    if (this.glarePrerender) {
+      return;
+    }
+
+    Object.assign(this.glareElementWrapper.style, {
+      "position": "absolute",
+      "top": "0",
+      "left": "0",
+      "width": "100%",
+      "height": "100%",
+      "overflow": "hidden",
+      "pointer-events": "none",
+      "border-radius": "inherit"
+    });
+
+    Object.assign(this.glareElement.style, {
+      "position": "absolute",
+      "top": "50%",
+      "left": "50%",
+      "pointer-events": "none",
+      "background-image": "linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)",
+      "transform": "rotate(180deg) translate(-50%, -50%)",
+      "transform-origin": "0% 0%",
+      "opacity": "0"
+    });
+
+    this.updateGlareSize();
+  };
+
+  VanillaTilt.prototype.updateGlareSize = function updateGlareSize() {
+    if (this.glare) {
+      var glareSize = (this.element.offsetWidth > this.element.offsetHeight ? this.element.offsetWidth : this.element.offsetHeight) * 2;
+
+      Object.assign(this.glareElement.style, {
+        "width": glareSize + "px",
+        "height": glareSize + "px"
+      });
+    }
+  };
+
+  VanillaTilt.prototype.updateClientSize = function updateClientSize() {
+    this.clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    this.clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  };
+
+  VanillaTilt.prototype.onWindowResize = function onWindowResize() {
+    this.updateGlareSize();
+    this.updateClientSize();
+  };
+
+  VanillaTilt.prototype.setTransition = function setTransition() {
+    var _this = this;
+
+    clearTimeout(this.transitionTimeout);
+    this.element.style.transition = this.settings.speed + "ms " + this.settings.easing;
+    if (this.glare) this.glareElement.style.transition = "opacity " + this.settings.speed + "ms " + this.settings.easing;
+
+    this.transitionTimeout = setTimeout(function () {
+      _this.element.style.transition = "";
+      if (_this.glare) {
+        _this.glareElement.style.transition = "";
+      }
+    }, this.settings.speed);
+  };
+
+  /**
+   * Method return patched settings of instance
+   * @param {boolean} settings.reverse - reverse the tilt direction
+   * @param {number} settings.max - max tilt rotation (degrees)
+   * @param {startX} settings.startX - the starting tilt on the X axis, in degrees. Default: 0
+   * @param {startY} settings.startY - the starting tilt on the Y axis, in degrees. Default: 0
+   * @param {number} settings.perspective - Transform perspective, the lower the more extreme the tilt gets
+   * @param {string} settings.easing - Easing on enter/exit
+   * @param {number} settings.scale - 2 = 200%, 1.5 = 150%, etc..
+   * @param {number} settings.speed - Speed of the enter/exit transition
+   * @param {boolean} settings.transition - Set a transition on enter/exit
+   * @param {string|null} settings.axis - What axis should be enabled. Can be "x" or "y"
+   * @param {boolean} settings.glare - if it should have a "glare" effect
+   * @param {number} settings.max-glare - the maximum "glare" opacity (1 = 100%, 0.5 = 50%)
+   * @param {boolean} settings.glare-prerender - false = VanillaTilt creates the glare elements for you, otherwise
+   * @param {boolean} settings.full-page-listening - If true, parallax effect will listen to mouse move events on the whole document, not only the selected element
+   * @param {string|object} settings.mouse-event-element - String selector or link to HTML-element what will be listen mouse events
+   * @param {boolean} settings.reset - false = If the tilt effect has to be reset on exit
+   * @param {gyroscope} settings.gyroscope - Enable tilting by deviceorientation events
+   * @param {gyroscopeSensitivity} settings.gyroscopeSensitivity - Between 0 and 1 - The angle at which max tilt position is reached. 1 = 90deg, 0.5 = 45deg, etc..
+   * @param {gyroscopeSamples} settings.gyroscopeSamples - How many gyroscope moves to decide the starting position.
+   */
+
+
+  VanillaTilt.prototype.extendSettings = function extendSettings(settings) {
+    var defaultSettings = {
+      reverse: false,
+      max: 15,
+      startX: 0,
+      startY: 0,
+      perspective: 1000,
+      easing: "cubic-bezier(.03,.98,.52,.99)",
+      scale: 1,
+      speed: 300,
+      transition: true,
+      axis: null,
+      glare: false,
+      "max-glare": 1,
+      "glare-prerender": false,
+      "full-page-listening": false,
+      "mouse-event-element": null,
+      reset: true,
+      gyroscope: true,
+      gyroscopeMinAngleX: -45,
+      gyroscopeMaxAngleX: 45,
+      gyroscopeMinAngleY: -45,
+      gyroscopeMaxAngleY: 45,
+      gyroscopeSamples: 10
+    };
+
+    var newSettings = {};
+    for (var property in defaultSettings) {
+      if (property in settings) {
+        newSettings[property] = settings[property];
+      } else if (this.element.hasAttribute("data-tilt-" + property)) {
+        var attribute = this.element.getAttribute("data-tilt-" + property);
+        try {
+          newSettings[property] = JSON.parse(attribute);
+        } catch (e) {
+          newSettings[property] = attribute;
+        }
+      } else {
+        newSettings[property] = defaultSettings[property];
+      }
+    }
+
+    return newSettings;
+  };
+
+  VanillaTilt.init = function init(elements, settings) {
+    if (elements instanceof Node) {
+      elements = [elements];
+    }
+
+    if (elements instanceof NodeList) {
+      elements = [].slice.call(elements);
+    }
+
+    if (!(elements instanceof Array)) {
+      return;
+    }
+
+    elements.forEach(function (element) {
+      if (!("vanillaTilt" in element)) {
+        element.vanillaTilt = new VanillaTilt(element, settings);
+      }
+    });
+  };
+
+  return VanillaTilt;
+}();
+
+if (typeof document !== "undefined") {
+  /* expose the class to window */
+  window.VanillaTilt = VanillaTilt;
+
+  /**
+   * Auto load
+   */
+  VanillaTilt.init(document.querySelectorAll("[data-tilt]"));
+}
+
+module.exports = VanillaTilt;
 
 
 /***/ })
@@ -8675,6 +8985,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -8707,26 +9029,15 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/*!***********************!*\
+  !*** ./src/vendor.js ***!
+  \***********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _app_app_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.js */ "./src/app/app.js");
-/* harmony import */ var _app_alert_service_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/alert.service.js */ "./src/app/alert.service.js");
-/* harmony import */ var _app_calculator_service_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/calculator.service.js */ "./src/app/calculator.service.js");
-/* harmony import */ var _app_jokes_service_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app/jokes.service.js */ "./src/app/jokes.service.js");
+/* harmony import */ var vanilla_tilt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vanilla-tilt */ "./node_modules/vanilla-tilt/lib/vanilla-tilt.js");
+/* harmony import */ var vanilla_tilt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vanilla_tilt__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
-
-
-
-var alertService = new _app_alert_service_js__WEBPACK_IMPORTED_MODULE_3__.AlertService();
-var calculatorService = new _app_calculator_service_js__WEBPACK_IMPORTED_MODULE_4__.CalculatorService();
-var jokesService = new _app_jokes_service_js__WEBPACK_IMPORTED_MODULE_5__.JokesService();
-(0,_app_app_js__WEBPACK_IMPORTED_MODULE_2__.run)(alertService, calculatorService, jokesService);
 })();
 
 /******/ })()
